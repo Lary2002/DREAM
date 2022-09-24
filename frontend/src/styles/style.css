@@ -89,7 +89,7 @@
     box-shadow: 3px 3px 3px white;
 }
 .buton:active{
-    transform: scale(0.09);
+    transform: scale(1);
     transition: 1ms;
 }
 

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
- #from rest_framework.parsers import JSONParser
+from rest_framework.parsers import JSONParser
 from rest_framework import viewsets
 from django.http.response import JsonResponse
 from .models import *
@@ -108,23 +108,22 @@ def inscription(request):
     return render(request, 'inscription.html')
 
 #connexion
+@csrf_exempt
 def connexion(request):
     if request.method == "POST":
-        email = request.POST['email']
-        password = request.POST['password']
-        user = authenticate(request, email = email, passsword = password)
+        #email = request.POST['email']
+        #password = request.POST['password']
+        data = JSONParser().parse(request)
+        user = authenticate(request, email = data['email'], passsword = data['password'])
         if user is not None and user.is_active:
             login(request, user)
-            messages.success(request, "Bienvenu")
-            redirect('')#chemin à indiquer
+            return JsonResponse( "Bienvenu")
         else:
-            messages.error(request, "Identifiants incorrects, Veuillez réessayer")
-
-    return render(request, 'index.html')
+            return JsonResponse("Identifiants incorrects, Veuillez réessayer")
 
 #déconnexion
 @login_required
-def logout(request):
+def deconnexion(request):
     logout(request)
      
  

@@ -21,7 +21,7 @@ class Valeur(models.Model):
 #4 class utilisateur
 class Utilisateur(models.Model):
     class Sexe(models.TextChoices):
-        Femelle = 'Femelle'
+        Femelle = 'Féminin'
         Masculin = 'Masculin'
 
     nom = models.CharField(max_length=100)
@@ -30,6 +30,7 @@ class Utilisateur(models.Model):
     sexe = models.CharField(choices=Sexe.choices, max_length=100)
     telephone = models.IntegerField()
     pays = models.CharField(max_length=100)
+    photo = models.FileField(upload_to='photos', null=True)
     adresse = models.CharField(max_length=255)
     motDePasse = models.CharField(max_length=100)
     idMesure = models.ForeignKey(Mesure, null=True, on_delete=models.CASCADE)

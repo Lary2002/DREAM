@@ -30,7 +30,7 @@
                         </div>
                         <div class="titre-input2">
                             <p class="titre"> <i>Photo (Facultatif):</i></p>
-                            <input  type="file" required name="photo">
+                            <input  type="file"  required name="photo">
 
                         </div>
                     </div>
@@ -71,7 +71,7 @@
 
                     <div class="titre-input">
                         <p class="titre"><i> Mot de passe(confirmation):</i></p>
-                        <input type="password" class="toto" required name="Adresse" v-model="password" v-bind="motDePasse" placeholder=".........">
+                        <input type="password" class="toto" required name="Adresse" v-model="password"  placeholder=".........">
 
                     </div>
                     <router-link :to="lien" class="none">
@@ -179,20 +179,40 @@ export default {
             }      
         },
 
-        createUser(){
-            axios.post('http://127.0.0.1:8000/api/utilisateur/',{
+       createUser(){
+            //let users = []
+            let user = {
                 nom: this.nom,
                 prenom: this.prenom,
                 sexe: this.sexe,
                 adresse: this.adresse,
                 telephone: this.telephone,
-                moDePasse: this.password,
+                motDePasse: this.password,
                 photo: this.photo,
                 pays: this.pays,
                 email: this.email,
-            })
-            
-        }
+            }
+            console.log(user);
+            let utilisateurs
+            var compter = 0
+            axios.get('http://127.0.0.1:8000/api/utilisateur').then(users => {
+                utilisateurs = users.data
+                console.log(utilisateurs); 
+                for (const utilisateur of utilisateurs) {
+                    if (user.email === utilisateur.email){
+                        compter++
+
+                    }
+                }
+                if (compter>=1) {
+                    alert('Cet utilisateur existe déja')
+                }
+                else{
+                    axios.post('http://127.0.0.1:8000/api/utilisateur/', user)
+                }
+                })
+
+       }
 
         
     }
