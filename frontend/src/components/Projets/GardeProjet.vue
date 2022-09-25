@@ -6,7 +6,7 @@
         <img src="@/assets/trans.png" alt="" class="UAC">
 
         <div class="ceuil">
-          <router-link to="/Accueil" class="boo">
+        <router-link to="/Accueil" class="boo">
             <div class="vi">Acceuil</div>
           </router-link>
           <router-link to="/Apropos" class="boo">

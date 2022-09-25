@@ -88,31 +88,21 @@ def saveFile(request):
 
 
 #registration
+@csrf_exempt
 def inscription(request):
     if request.method == "POST":
-        nom = request.POST['nom']
-        prenom = request.POST['prenom']
-        email = request.POST['mail']
-        sexe = request.POST['sexe']
-        photo = request.POST['photo']
-        adresse = request.POST['adresse']
-        pays = request.POST['pays']
-        numero = request.POST['numero']
-        password = request.POST['password']
-        
-        nouvelUtilisateur = Utilisateur.objects.create(nom = nom, prenom = prenom,
-         email = email, sexe = sexe, telephone = numero, pays= pays, adresse = adresse ,
-         motDePasse = password,  photo = photo)
+        datas = JSONParser().parse(request)
+        nouvelUtilisateur = Utilisateur.objects.create(nom = datas['nom'], prenom = datas['prenom'] ,
+         email = datas['email'], sexe = datas['sexe'] , telephone = datas['numero'] , pays = datas['pays'], adresse = datas['adresse'] ,
+         motDePasse = datas['password'],  photo = datas['photo'])
 
         nouvelUtilisateur.save()
-    return render(request, 'inscription.html')
+    return JsonResponse("Vous êtes bien enregistré!")
 
 #connexion
 @csrf_exempt
 def connexion(request):
     if request.method == "POST":
-        #email = request.POST['email']
-        #password = request.POST['password']
         data = JSONParser().parse(request)
         user = authenticate(request, email = data['email'], passsword = data['password'])
         if user is not None and user.is_active:
