@@ -1,47 +1,46 @@
-#from dataclasses import fields
 from rest_framework import serializers
 from .models import *
 
 class MesureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mesure
-        fields = []
+        fields = ['n_ieme_mesure']
 
 class TypeMesureSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeMesure
-        fields = ['typeMesure']
+        fields = [ 'typeMesure' ]
 
 
 class ValeurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Valeur
-        fields = ['valeur']
+        fields = ['idMesure', 'idTypeMesure','valeur']
 
 
 class UtilisateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Utilisateur
-        fields = ['nom', 'prenom', 'sexe', 'email', 'telephone', 'adresse', 'motDePasse', 'idMesure']
+        fields = ['nom', 'prenom', 'sexe', 'email', 'telephone','pays', 'photo', 'adresse', 'motDePasse', 'idMesure']
 
 
 
 class ProfessionnelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Professionnel
-        fields = ['productivite']
+        fields = ['productivite', 'idUtilisateur']
 
 
 class AdministrateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Administrateur
-        fields = []
+        fields = ['idUtilisateurs']
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ['libelle', 'prix', 'vendu', 'patron', 'typeModel', 'photo']
+        fields = ['libelle', 'prix', 'disponible', 'idCategorie', 'photo']
         
 
 class CategorieSerializer(serializers.ModelSerializer):
@@ -52,7 +51,7 @@ class CategorieSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['date', 'idProfessionnel', 'idArticle', 'description']
+        fields = ['idProfessionnel', 'idArticle','description', 'date']
 
 
 class ContenuSerializer(serializers.ModelSerializer):
@@ -64,15 +63,15 @@ class ContenuSerializer(serializers.ModelSerializer):
 class AppreciationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appreciation
-        fields = ['date', 'idPost', 'idProfessionnel', 'commentaire']
+        fields = ['idProfessionnel', 'idPost', 'commentaire', 'date']
 
 class CommandeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Commande
-        fields = ['nombreArticle', 'prix', 'date', 'idUtilisateur']
+        fields = ['nombreArticle', 'prix', 'date','dateLivraison', 'idUtilisateur']
 
 
 class FactureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Facture
-        fields = ['idCommande', 'prix', 'date', 'idUtilisateur']
+        fields = ['idUtilisateur', 'idCommande', 'prix', 'date' ]

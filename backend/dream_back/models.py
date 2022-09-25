@@ -14,7 +14,7 @@ class TypeMesure(models.Model):
 #3 classe Valeur
 class Valeur(models.Model):
     idMesure = models.ForeignKey(Mesure, null=True, on_delete=models.CASCADE)
-    idUtilisateur = models.ForeignKey(TypeMesure, null=True, on_delete=models.CASCADE)
+    idTypeMesure = models.ForeignKey(TypeMesure, null=True, on_delete=models.CASCADE)
     valeur = models.DecimalField(max_digits=3, decimal_places=2)
 
 
@@ -52,13 +52,13 @@ class Professionnel(models.Model):
         Excellent = 'Excellent'
 
     productivite = models.CharField(choices=Niveau.choices, max_length=20)
-
+    idUtilisateur = models.ForeignKey(Utilisateur, null=True, on_delete=models.CASCADE)
 
 #7 classe Administrateur
 class Administrateur(Utilisateur):
-    administrateurs = models.IntegerField(null=True)
+    idUtilisateurs = models.ForeignKey(TypeMesure, null=True, on_delete=models.CASCADE)
     def __str__(self):
-        return str(self.administrateurs)
+        return str(self.idUtilisateurs)
 
 #8 classe Catégorie
 class Categorie(models.Model):
@@ -69,7 +69,7 @@ class Categorie(models.Model):
 class Article(models.Model):
     libelle = models.CharField(max_length=30)
     prix = models.IntegerField()
-    vendu = models.BooleanField()
+    disponible = models.BooleanField()
     idCategorie = models.ForeignKey(Categorie, null=True, on_delete=models.CASCADE) 
     photo = models.FileField(upload_to='photos')
  
@@ -92,7 +92,7 @@ class Post(models.Model):
 class Appreciation(models.Model):
     idProfessionnel = models.ForeignKey(Professionnel, null=True, on_delete=models.CASCADE)
     idPost = models.ForeignKey(Post, null=True, on_delete=models.CASCADE)
-    commentaire = models.TextField()
+    commentaire = models.TextField(null=True)
     date = models.DateTimeField
 
     def __str__(self):

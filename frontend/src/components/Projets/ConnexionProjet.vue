@@ -138,20 +138,19 @@ export default {
 
       axios.get("http://127.0.0.1:8000/api/utilisateur").then((users) => {
         let logins = users.data;
-        console.log(logins);
+//        console.log(logins);
         let datas;
         let compter =0
         for (const donnee of logins) {
             let mail = donnee["email"];
             let passe = donnee["motDePasse"];
             datas = { mail, passe };
-            console.log(datas);
-            //let compter;
+//            console.log(datas);
             if (datas.mail == login.email && datas.passe == login.password) {
                 compter++;
             }
         }
-        console.log(compter);
+//        console.log(compter);
         if (compter >= 1) {
             alert("Connexion réussie");
         } else {
