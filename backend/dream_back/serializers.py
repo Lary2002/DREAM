@@ -46,7 +46,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 class CategorieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categorie
-        fields = ['categorie']
+        fields = ['categorie', 'img']
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:

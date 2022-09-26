@@ -1,26 +1,15 @@
 <template>
     <br>
     <div class="pou">
-        <div class="flex">
+        <div class="togboo">
             <p>{{ contenu.titre }}</p>
-            <hr class="taille">
-            <p>{{ contenu.Nom }}</p>
-            <hr class="taille">
+ 
+            <p class="nawv">{{ contenu.Nom }}</p>
             <p>{{ contenu.date }}</p>
-            <hr class="taille">
             <p>{{ contenu.niveau }}</p>
-            <hr class="taille">
+            <img :src="image" alt="..." class="delete">
             <div>
-                <img src="@/assets/delete.svg" alt="" class="delete">
-            </div>
-            <hr class="taille">
-            <div>
-                <img src="@/assets/check.svg" alt="" class="delete">
-                <!-- {{ contenu.images }} -->
-            </div>
-            <hr class="taille">
-            <div>
-                <img src="@/assets/h.svg" alt="" class="delete">
+            
             </div>
         </div>
     </div>
@@ -29,9 +18,11 @@
 
 <script>
 export default {
-
+    name: 'CommnadeInfo',
     props: {
-        contenu: Object
+        contenu: Object,
+        image: String
+
     }
 
 }

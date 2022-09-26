@@ -15,13 +15,19 @@ class TypeMesure(models.Model):
 class Valeur(models.Model):
     idMesure = models.ForeignKey(Mesure, null=True, on_delete=models.CASCADE)
     idTypeMesure = models.ForeignKey(TypeMesure, null=True, on_delete=models.CASCADE)
-    valeur = models.DecimalField(max_digits=3, decimal_places=2)
+    valeur = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return str(self.idMesure)
+
+    def __str__(self):
+        return str(self.idTypeMesure)
 
 
 #4 class utilisateur
 class Utilisateur(models.Model):
     class Sexe(models.TextChoices):
-        Femelle = 'Féminin'
+        Feminin = 'Féminin'
         Masculin = 'Masculin'
 
     nom = models.CharField(max_length=100)
@@ -30,13 +36,12 @@ class Utilisateur(models.Model):
     sexe = models.CharField(choices=Sexe.choices, max_length=100)
     telephone = models.IntegerField()
     pays = models.CharField(max_length=100)
-    photo = models.FileField(upload_to='photos', null=True)
+    photo = models.FileField(upload_to='photos', null=True, blank=True)
     adresse = models.CharField(max_length=255)
     motDePasse = models.CharField(max_length=100)
     idMesure = models.ForeignKey(Mesure, null=True, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str(self.idMesure)
+
 
 
 #5 classe Message
@@ -63,6 +68,7 @@ class Administrateur(Utilisateur):
 #8 classe Catégorie
 class Categorie(models.Model):
     categorie = models.CharField(max_length=30)
+    img = models.FileField(upload_to= 'photos')
 
 
 #9 classe Article
@@ -92,7 +98,7 @@ class Post(models.Model):
 class Appreciation(models.Model):
     idProfessionnel = models.ForeignKey(Professionnel, null=True, on_delete=models.CASCADE)
     idPost = models.ForeignKey(Post, null=True, on_delete=models.CASCADE)
-    commentaire = models.TextField(null=True)
+    commentaire = models.TextField(null=True, blank=True)
     date = models.DateTimeField
 
     def __str__(self):

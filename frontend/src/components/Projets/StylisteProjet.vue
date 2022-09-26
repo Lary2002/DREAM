@@ -2258,30 +2258,33 @@
 
    </form>
    <br>
-   <div v-if="etat2" class="infor">
-      <div class="carte">
-         <img src="@/assets/carto.jpg" alt="" class="ronde">
-         <hr class="vu">
-         <div>
-            <p class="en">Emery</p>
-            <p class="en">Dollar Fashion</p>
-            <p>dollar24@gmail.com</p>
-            <hr>
-            <p class="mini">Couture dame</p>
-         </div>
+   <div class="graph">
+   
+      <div v-if="etat2" class="infor">
+         <div class="carte">
+            <img src="@/assets/carto.jpg" alt="" class="ronde">
+            <hr class="vu">
+            <div>
+               <p class="en">Emery</p>
+               <p class="en">Dollar Fashion</p>
+               <p>dollar24@gmail.com</p>
+               <hr>
+               <p class="mini">Couture dame</p>
+            </div>
 
-      </div>
-      <!-- <p class="eme">A Emery</p> -->
-      <div class="pron">
-         <p>15Postes</p>
-         <p>75Collections</p>
-         <p>10Prospects</p>
-      </div>
-      <hr class="vo">
-      <div class="proo">
-         <p class="coro">Postes</p>
-         <hr>
-         <p class="coro">Colletions</p>
+         </div>
+         <!-- <p class="eme">A Emery</p> -->
+         <div class="pron">
+            <p>15Postes</p>
+            <p>75Collections</p>
+            <p>10Prospects</p>
+         </div>
+         <hr class="vo">
+         <div class="proo">
+            <p class="coro">Postes</p>
+            <hr>
+            <p class="coro">Colletions</p>
+         </div>
       </div>
    </div>
    <FooterProjet />
@@ -2328,8 +2331,10 @@ export default {
 .coro {
    background-color: blue;
    height: 30px;
-   width: 150px;
+   width: 110px;
    text-align: center;
+   border-radius: 20px;
+   
 }
 
 .vo {
@@ -2351,6 +2356,7 @@ export default {
 .proo {
    display: flex;
    justify-content: space-around;
+   justify-content:space-around;
 }
 
 .pron {
@@ -2386,6 +2392,11 @@ export default {
    text-decoration: none;
 }
 
+.graph{
+   margin-top: 90px;
+   margin-bottom: 60px;
+
+}
 .ronde {
    border: 1px solid black;
    border-radius: 200px;

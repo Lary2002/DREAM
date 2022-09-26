@@ -89,10 +89,22 @@
     box-shadow: 3px 3px 3px white;
 }
 .buton:active{
-    transform: scale(1);
+    transform: scale(0.1);
     transition: 1ms;
 }
 
+.bou:active{
+    transform: scale(0.1);
+    transition: 1ms;
+}
+.noir:active{
+    transform: scale(0.9);
+    transition: 1ms;
+}
+.acc:active{
+    transform: scale(0.9);
+    transition: 1ms;
+}
 .infor {
     font-size: 1.4rem;
     width: 520px;
@@ -339,9 +351,11 @@ body {
 }
 
 .delete {
-    width: 20%;
-    height: 15%;
+    width: 2%;
+    height: 5%;
     margin-top: 23px;
+    background-color: rgb(128, 129, 233);
+    border-radius: 15px;
 }
 
 
@@ -376,7 +390,7 @@ body {
     font-size: 1.2rem;
     border-radius: 15px;
     width: 750px;
-    height: 80px;
+    height: 70px;
     margin: auto;
 
 }
@@ -1031,19 +1045,23 @@ body {
     border-radius: 10px;
     margin-top: 10%;
 }
-
+.rovi:active{
+    transform: scale(0.9);
+    transition: 1ms;
+}
 .rovi {
     background-color: blue;
     color: white;
     text-align: center;
     font-weight: bold;
     margin-top: 20px;
-    width: 370px;
+    width: 380px;
     padding: 10px;
     font-size: 2rem;
     cursor: pointer;
     text-decoration: none;
     box-shadow: 7px 5px 5px darkgrey;
+    border-radius: 20px;
 }
 
 .rovou {
@@ -1058,6 +1076,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     box-shadow: 7px 5px 5px darkgrey;
+    border-radius: 20px;
 }
 
 
@@ -1078,8 +1097,20 @@ body {
     cursor: pointer;
     text-decoration: none;
     box-shadow: 7px 5px 5px darkgrey;
+    border-radius: 20px;
 }
-
+.nawv{
+    background-color: rgb(136, 136, 245);
+}
+.togboo{
+    display: flex;
+    justify-content: space-between;
+    justify-content: space-around;
+}
+.rova:active{
+    transform: scale(0.9);
+    transition: 1ms;
+}
 .arder {
     display: flex;
     justify-content: space-between;

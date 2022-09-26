@@ -126,7 +126,7 @@ export default {
             sexe: '',
             adresse: '',
             telephone: '',
-            photo: '',
+            //photo: '',
             pays: '',
             
         }
@@ -155,7 +155,7 @@ export default {
         },
         show(message) {
             
-            if(this.msg['email']  & this.msg['password'] == '')
+            if(this.msg['email']  == '' && this.msg['password'] == '')
             {
                 this.lien = "/mesure";
             }
@@ -170,7 +170,7 @@ export default {
 
 
         validatePassword(value){
-            let difference = 10 - value.length;
+            let difference = 8 - value.length;
             
             if(value.length<10){
                 this.msg['password'] = 'Sa doit contenir au moins dix caractère, un chiffre et un symbole!' + difference +' caractères restantes' ;
@@ -188,7 +188,7 @@ export default {
                 adresse: this.adresse,
                 telephone: this.telephone,
                 motDePasse: this.password,
-                photo: this.photo,
+                //photo: this.photo,
                 pays: this.pays,
                 email: this.email,
             }

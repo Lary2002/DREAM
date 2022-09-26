@@ -56,6 +56,7 @@ import img12 from "@/assets/baba.jpg"
 import img13 from "@/assets/food.png"
 import img14 from "@/assets/tenue.jpg"
 import img15 from "@/assets/mode.png"
+import axios from 'axios';
 
 export default {
     name: "AcceuilProjetVue",
@@ -88,7 +89,7 @@ export default {
 
                 const new_valeur = new Photo(Mode.name, Mode.price, images[i])
                 i++
-                // make all mode array
+
 
                 all_mode.push(new_valeur);
 
@@ -123,15 +124,13 @@ export default {
             //  new_value==0 ? search_photo.value = [] : search_photo.value  =  new_search_photo.value ;
             console.log(search_photo);
         })
-        //
+        axios.get('http://127.0.0.1:8000/api/categorie/').then(cat => console.log(cat.data))
         onMounted(makeDatavaleur);
-
         //return
         return {
             data_valeur,
             user_search_mode,
             search_photo,
-
         }
     },
 
