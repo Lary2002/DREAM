@@ -31,7 +31,7 @@
           <span v-if="msg.password" class="vert">{{ msg.password }} </span>
           <br />
           <router-link :to="lien" class="none">
-            <div class="bou" v-on:click="connexion()">
+            <div class="bou" @click="connexion()">
               <p>Se connecter</p>
             </div>
           </router-link>
@@ -105,7 +105,7 @@ export default {
       }
     },
     show(message) {
-      if ((this.msg["email"] == "") & (this.msg["password"] == "")) {
+      if ((this.msg["email"] == "") && (this.msg["password"] == "")) {
         localStorage.setItem("connecter", "yes");
 
         if (localStorage.getItem("connecter") == "yes") {
@@ -117,9 +117,9 @@ export default {
     },
 
     validatePassword(value) {
-      let difference = 10 - value.length;
+      let difference = 8 - value.length;
 
-      if (value.length < 10) {
+      if (value.length < 8) {
         this.msg["password"] =
           "Sa doit contenir au moins dix caractère!" +
           difference +
@@ -138,23 +138,24 @@ export default {
 
       axios.get("http://127.0.0.1:8000/api/utilisateur").then((users) => {
         let logins = users.data;
-//        console.log(logins);
+        //console.log(logins);
         let datas;
         let compter =0
         for (const donnee of logins) {
             let mail = donnee["email"];
             let passe = donnee["motDePasse"];
             datas = { mail, passe };
-//            console.log(datas);
+            console.log(datas);
             if (datas.mail == login.email && datas.passe == login.password) {
                 compter++;
             }
         }
-//        console.log(compter);
+        //console.log(compter);
         if (compter >= 1) {
             alert("Connexion réussie");
+            router.push("/Accueil");
         } else {
-            alert("Connexion échouée");
+            alert("Connexion échouée, assurez vous que vous avez un compte chez nous ou inscrivez vous");
         }
         
       });

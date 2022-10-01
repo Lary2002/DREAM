@@ -4,74 +4,70 @@ from .models import *
 class MesureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mesure
-        fields = ['n_ieme_mesure']
+        fields = "__all__"
 
 class TypeMesureSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeMesure
-        fields = [ 'typeMesure' ]
+        fields = "__all__"
 
 
 class ValeurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Valeur
-        fields = ['idMesure', 'idTypeMesure','valeur']
+        fields = "__all__"
 
 
 class UtilisateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Utilisateur
-        fields = ['nom', 'prenom', 'sexe', 'email', 'telephone','pays', 'photo', 'adresse', 'motDePasse', 'idMesure']
-
+        fields = "__all__"
 
 
 class ProfessionnelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Professionnel
-        fields = ['productivite', 'idUtilisateur']
+        fields = "__all__"
 
 
 class AdministrateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Administrateur
-        fields = ['idUtilisateurs']
+        fields = "__all__"
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ['libelle', 'prix', 'disponible', 'idCategorie', 'photo']
-        
+        fields = "__all__"
 
 class CategorieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categorie
-        fields = ['categorie', 'img']
+        fields = "__all__"
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['idProfessionnel', 'idArticle','description', 'date']
+        fields = "__all__"
 
 
 class ContenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contenu
-        fields = ['idCommande', 'idArticle']
-
+        fields = "__all__"
 
 class AppreciationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appreciation
-        fields = ['idProfessionnel', 'idPost', 'commentaire', 'date']
+        fields = "__all__"
 
 class CommandeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Commande
-        fields = ['nombreArticle', 'prix', 'date','dateLivraison', 'idUtilisateur']
-
+        fields = "__all__"
 
 class FactureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Facture
-        fields = ['idUtilisateur', 'idCommande', 'prix', 'date' ]
+        fields = "__all__"

@@ -89,12 +89,12 @@
     box-shadow: 3px 3px 3px white;
 }
 .buton:active{
-    transform: scale(0.1);
+    transform: scale(0.9);
     transition: 1ms;
 }
 
 .bou:active{
-    transform: scale(0.1);
+    transform: scale(0.9);
     transition: 1ms;
 }
 .noir:active{
@@ -788,7 +788,7 @@ body {
 }
 
 .wrapper {
-    background-color: white;
+    background-color: rgb(191, 230, 251);
     /* rgb(247, 242, 242) */
     position: fixed;
     display: flex;
@@ -862,7 +862,7 @@ body {
     background-color: white;
     height: 455px;
     width: 279px;
-    box-shadow: 10px 5px 5px blue;
+    box-shadow: 10px 5px 5px rgb(158, 220, 247);
 
 }
 

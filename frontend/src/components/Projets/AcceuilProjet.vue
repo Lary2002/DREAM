@@ -39,9 +39,9 @@
 import HearderProjet from '../Projets/HearderProjet.vue';
 import FooterProjet from '../Projets/FooterProjet.vue';
 import ModePhoto from '../Projets/ModePhoto.vue';
-import BDD from '@/BDD.js'
+//import BDD from '@/BDD.js'
 import { onMounted, ref, watch } from 'vue'
-import img1 from "@/assets/combine.jpg"
+/* import img1 from "@/assets/combine.jpg"
 import img2 from "@/assets/Subway.jpg"
 import img3 from "@/assets/Momo.jpg"
 import img4 from "@/assets/p.jpg"
@@ -55,7 +55,7 @@ import img11 from "@/assets/veste.jpg"
 import img12 from "@/assets/baba.jpg"
 import img13 from "@/assets/food.png"
 import img14 from "@/assets/tenue.jpg"
-import img15 from "@/assets/mode.png"
+import img15 from "@/assets/mode.png" */
 import axios from 'axios';
 
 export default {
@@ -66,32 +66,57 @@ export default {
         HearderProjet,
         FooterProjet
     },
-
+    
     setup() {
-
-        class Photo {
-            constructor(description, price, img) {
+        
+        class Categorie {
+            constructor(description, img) {
                 this.name = description
-                this.price = price
                 this.img = img
 
 
             }
         }
+        
+        
         // <p>tableau qui gere laffichage des images</p>
+        let categorie = []
         let data_valeur = ref([]);
         let all_mode = [];
-        let images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15]
-        let i = 0
+        //let images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15]
+        //let i = 0
         const makeDatavaleur = () => {
+            axios.get('http://127.0.0.1:8000/api/categorie/').then(cate => {
+            categorie = cate.data
+            console.log(categorie);
             let five_valeur = [];
+            for (const cat of categorie) {
+                //console.log(cat);
+                const new_cat = new Categorie(cat.categorie, cat.img);
+                
+                all_mode.push(new_cat);
+
+                if (five_valeur.length === 3) {
+                    five_valeur.push(new_cat);
+                    data_valeur.value.push(five_valeur);
+                    five_valeur = [];
+                }
+                else {
+                    five_valeur.push(new_cat);
+                }
+                
+            }
+            console.log(all_mode);
+
+            })
+            /* let five_valeur = [];
             for (const Mode of BDD) {
 
-                const new_valeur = new Photo(Mode.name, Mode.price, images[i])
+                const new_valeur = new Categorie(Mode.name, images[i])
                 i++
 
 
-                all_mode.push(new_valeur);
+                
 
 
                 if (five_valeur.length === 3) {
@@ -102,7 +127,7 @@ export default {
                 else {
                     five_valeur.push(new_valeur);
                 }
-            }
+            } */
 
         };
         //User search mode
@@ -124,15 +149,16 @@ export default {
             //  new_value==0 ? search_photo.value = [] : search_photo.value  =  new_search_photo.value ;
             console.log(search_photo);
         })
-        axios.get('http://127.0.0.1:8000/api/categorie/').then(cat => console.log(cat.data))
         onMounted(makeDatavaleur);
         //return
         return {
             data_valeur,
             user_search_mode,
             search_photo,
+            
+            
         }
-    },
+    }
 
 }
 </script>

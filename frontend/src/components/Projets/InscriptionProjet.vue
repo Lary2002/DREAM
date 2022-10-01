@@ -108,6 +108,8 @@
 import axios from 'axios'
 import FooterProjet from '../Projets/FooterProjet.vue';
 import HearderProjet from '../Projets/HearderProjet.vue'
+//import router from 'frontend/src/router';
+//import router from 'frontend/src/router';
 export default {
     components :{
         HearderProjet,
@@ -205,10 +207,12 @@ export default {
                     }
                 }
                 if (compter>=1) {
-                    alert('Cet utilisateur existe déja')
+                    alert('Cet utilisateur existe déja');
+                    this.lien = "/Inscription"
                 }
                 else{
-                    axios.post('http://127.0.0.1:8000/api/utilisateur/', user)
+                    axios.post('http://127.0.0.1:8000/api/utilisateur/', user);
+                    this.lien = "/mesure";
                 }
                 })
 

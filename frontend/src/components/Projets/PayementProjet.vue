@@ -7,6 +7,7 @@
     <img src="@/assets/mtnmoney.jpg" alt="" class="wani">
     <img src="@/assets/moovmoney.png" alt="" class="wano">
     <img src="@/assets/cartebancaire.png" alt="" class="wane">
+    <button @click="open">click me</button>-->
   </div>
   <FooterProjet />
 </template>
@@ -14,12 +15,42 @@
 <script>
 import FooterProjet from '../Projets/FooterProjet.vue';
 import HearderProjet from './HearderProjet.vue';
+import {
+  openKkiapayWidget,
+  addKkiapayListener,
+  removeKkiapayListener,
+} from "kkiapay";
 export default {
   components: { HearderProjet, FooterProjet },
+  
+
+  methods: {
+
+    open() {
+      openKkiapayWidget({
+        amount: 4000,
+        api_key: "461972d924b6df54b20bb0978c6e081ec495d9f3",
+        sandbox: true,
+        phone: "97000000",
+      });
+    },
+
+    successHandler(response) {
+      console.log(response);
+    },
+    
+    beforeUnmount() {
+      removeKkiapayListener('success',this.successHandler)
+  },
+  },
+
   mounted() {
+    addKkiapayListener('success',this.successHandler)
     console.log(localStorage.getItem('page'));
     localStorage.setItem('page', 'payement');
-  }
+  },
+
+  
 }
 </script>
 
